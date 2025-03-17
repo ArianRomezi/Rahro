@@ -43,11 +43,11 @@
 const AdminPage = ({ data }) => {
   return (
     <div className="max-w-4xl mx-auto p-5">
-      {data.data.length === 0 && (
+      {data.length === 0 && (
         <p className="text-center text-gray-500">اطلاعاتی موجود نیست</p>
       )}
 
-      {data.data.map((i) => (
+      {data.map((i) => (
         <div
           key={i._id}
           className="border border-white/20 rounded-xl p-6 mb-6 bg-white/10 shadow-lg hover:shadow-xl transition-all duration-300"

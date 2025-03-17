@@ -35,18 +35,14 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 const Admin = async () => {
-  // اتصال به دیتابیس
   await connectDB();
 
-  // بررسی احراز هویت
   const session = await getServerSession(authOptions);
   if (!session) redirect("/signin");
 
-  // دریافت اطلاعات کاربر و بررسی نقش
   const user = await User.findOne({ email: session.user.email }).select("role");
   if (!user || user.role !== "ADMIN") redirect("/");
 
-  // دریافت اطلاعات فرم‌ها از دیتابیس
   const data = await Information.find();
 
   return <AdminPage data={data} />;
